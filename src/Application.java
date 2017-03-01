@@ -7,13 +7,13 @@ import com.example.booklet.repositories.*;
 
 @SpringBootApplication
 public class Application {
-	@Autowired LinkRepository repository;
-	@Autowired RedisOperations<Link, String> operations;
-	
-	Link link = new Link("goo.gl", "google.com");
+    @Autowired
+    LinkRepository repository;
+    @Autowired
+    RedisOperations<Link, String> operations;
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 	Link link = new Link("goog.le", "google.com");
-    System.out.println("Hello!");
-  }
+	System.out.println("Hello!");
+    }
 }
