@@ -1,8 +1,11 @@
 package com.example.booklet.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
+
+import com.example.booklet.repositories.LinkRepository;
 
 @RedisHash("links")
 public class Link {

@@ -10,7 +10,8 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @Configuration
 @EnableRedisRepositories
 public class ApplicationConfiguration {
-
+    
+    @Bean
     RedisConnectionFactory connectionFactory() {
 	JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
 	jedisConFactory.setHostName("localhost");

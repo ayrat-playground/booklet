@@ -29,7 +29,3 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile("org.springframework.boot:spring-boot-starter-data-redis")
 }
-
-springBoot {
-  mainClass = 'com.example.booklet.Application'
-}
