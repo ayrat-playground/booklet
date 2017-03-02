@@ -1,17 +1,13 @@
 package com.example.booklet.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.index.Indexed;
-
-import com.example.booklet.repositories.LinkRepository;
 
 @RedisHash("links")
 public class Link {
 	
-    public @Id String id;
-    public @Indexed String link;
+    @Id
+    public String link;
     public String long_link;
     
     public Link(String link, String long_link) {
