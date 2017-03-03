@@ -1,7 +1,5 @@
 package com.example.booklet.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +23,8 @@ public class LinkController {
     }
     
     @GetMapping
-    public List<Link> index() {
-	return (List<Link>) repo.findAll();
+    public Iterable<Link> index() {
+	return repo.findAll();
     }
     
     @GetMapping("/{link}")
