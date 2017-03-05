@@ -1,6 +1,6 @@
-package bookmate.app.booklet.booklet.repositories;
+package bookmate.app.booklet.repositories;
 
-import bookmate.app.booklet.booklet.models.Link;
+import bookmate.app.booklet.models.Link;
 import org.springframework.data.repository.CrudRepository;
 
 public interface LinkRepository extends CrudRepository<Link, String> {
