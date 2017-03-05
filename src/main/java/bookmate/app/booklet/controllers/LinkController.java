@@ -1,9 +1,10 @@
 package bookmate.app.booklet.controllers;
 
 import bookmate.app.booklet.models.Link;
-import bookmate.app.booklet.repositories.LinkRepository;
+import bookmate.app.booklet.services.LinkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mobile.device.Device;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,23 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/links")
 public class LinkController {
-
-  private final LinkRepository repo;
+  private final LinkServiceImpl linkService;
 
   @Autowired
-  public LinkController(LinkRepository repo) {
-    this.repo = repo;
+  public LinkController(LinkServiceImpl linkService) {
+    this.linkService = linkService;
   }
 
   @GetMapping
   public Iterable<Link> index() {
-    return repo.findAll();
+    return linkService.findAll();
   }
 
   @GetMapping("/{shortLink}")
-  public Link show(@PathVariable String shortLink) {
-    Link link = repo.findOne(shortLink);
-    
+  public Link show(
+      @PathVariable String shortLink,
+      Device device
+  ) {
+    Link link = linkService.find(shortLink);
+
     if (link!=null) {
       return link;
     }
@@ -43,12 +46,11 @@ public class LinkController {
   @PostMapping
   public void create(
       @RequestParam(value = "link") String link,
-                     @RequestParam(value = "longLink") String longLink
+      @RequestParam(value = "longLink") String longLink
   ) {
-    Link newLink = new Link(link, longLink);
-    repo.save(newLink);
+    linkService.create(link, longLink);
   }
 
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
-  public class ResourceNotFoundException extends RuntimeException {}
+  private class ResourceNotFoundException extends RuntimeException {}
 }

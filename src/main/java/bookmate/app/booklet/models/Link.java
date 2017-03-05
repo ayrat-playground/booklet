@@ -14,4 +14,20 @@ public class Link {
     this.link = link;
     this.longLink = longLink;
   }
+
+  public String getLink() {
+    return link;
+  }
+
+  public void setLink(String link) {
+    this.link = link;
+  }
+
+  public String getLongLink() {
+    return longLink;
+  }
+
+  public void setLongLink(String longLink) {
+    this.longLink = longLink;
+  }
 }
