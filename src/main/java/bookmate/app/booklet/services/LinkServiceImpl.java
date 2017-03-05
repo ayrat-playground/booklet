@@ -4,6 +4,8 @@ import bookmate.app.booklet.domain.LinkService;
 import bookmate.app.booklet.models.Link;
 import bookmate.app.booklet.repositories.LinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,8 @@ public class LinkServiceImpl implements LinkService {
   }
 
   @Override
-  public Iterable<Link> findAll() {
-    return repo.findAll();
+  public Page<Link> findAll(Pageable page) {
+    return repo.findAll(page);
   }
 
   @Override

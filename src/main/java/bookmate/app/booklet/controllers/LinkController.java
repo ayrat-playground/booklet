@@ -3,6 +3,8 @@ package bookmate.app.booklet.controllers;
 import bookmate.app.booklet.models.Link;
 import bookmate.app.booklet.services.LinkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.mobile.device.Device;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,8 @@ public class LinkController {
   }
 
   @GetMapping
-  public Iterable<Link> index() {
-    return linkService.findAll();
+  public Page<Link> index(Pageable pageable) {
+    return linkService.findAll(pageable);
   }
 
   @GetMapping("/{shortLink}")
