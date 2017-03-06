@@ -1,6 +1,7 @@
 package bookmate.app.booklet.controllers;
 
 import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -28,19 +29,22 @@ public class LinkControllerTest {
   @Test
   public void shouldCreateLink() throws Exception {
     String shortLink = "goog.le";
+    String webLink = "http://google.com";
 
-    mvc.perform(post("/links").param("link", shortLink).param("longLink", "http://google.com"))
+    mvc.perform(post("/links").param("link", shortLink).param("webLink", "http://google.com"))
         .andExpect(status().isOk());
 
     Link link = repo.findOne(shortLink);
     assertFalse(link.equals(null));
+    assertTrue(link.getWebLink().equals(webLink));
+    assertTrue(link.getLink().equals(shortLink));
   }
 
   @Test
   public void shouldShowLink() throws  Exception {
     String shortLink = "gle";
-    String longLink = "google.com";
-    Link newLink = new Link(shortLink, longLink);
+    String webLink = "google.com";
+    Link newLink = new Link(shortLink,  webLink, "androidLink", "iosLink", "wpLink");
     repo.save(newLink);
 
     mvc.perform(get("/links/" + shortLink))

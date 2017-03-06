@@ -34,8 +34,7 @@ public class LinkServiceImpl implements LinkService {
   }
 
   @Override
-  public Link create(String shortLink, String longLink) {
-    Link link = new Link(shortLink, longLink);
+  public Link create(Link link) {
     return repo.save(link);
   }
 }

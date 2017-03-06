@@ -1,5 +1,6 @@
 package bookmate.app.booklet.models;
 
+import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
@@ -7,12 +8,24 @@ import org.springframework.data.redis.core.RedisHash;
 public class Link {
 	
   @Id
+  @NotNull
   private String link;
-  private String longLink;
+  @NotNull
+  private String webLink;
+  private String androidLink;
+  private String iosLink;
+  private String wpLink;
 
-  public Link(String link, String longLink) {
+  public Link(String link,
+      String webLink,
+      String androidLink,
+      String iosLink,
+      String wpLink) {
     this.link = link;
-    this.longLink = longLink;
+    this.webLink = webLink;
+    this.androidLink = androidLink;
+    this.iosLink = iosLink;
+    this.wpLink = wpLink;
   }
 
   public String getLink() {
@@ -23,11 +36,35 @@ public class Link {
     this.link = link;
   }
 
-  public String getLongLink() {
-    return longLink;
+  public String getWebLink() {
+    return webLink;
   }
 
-  public void setLongLink(String longLink) {
-    this.longLink = longLink;
+  public void setWebLink(String webLink) {
+    this.webLink = webLink;
+  }
+
+  public String getAndroidLink() {
+    return androidLink;
+  }
+
+  public void setAndroidLink(String androidLink) {
+    this.androidLink = androidLink;
+  }
+
+  public String getIosLink() {
+    return iosLink;
+  }
+
+  public void setIosLink(String iosLink) {
+    this.iosLink = iosLink;
+  }
+
+  public String getWpLink() {
+    return wpLink;
+  }
+
+  public void setWpLink(String wpLink) {
+    this.wpLink = wpLink;
   }
 }

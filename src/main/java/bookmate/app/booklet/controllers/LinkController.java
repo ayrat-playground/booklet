@@ -2,6 +2,7 @@ package bookmate.app.booklet.controllers;
 
 import bookmate.app.booklet.models.Link;
 import bookmate.app.booklet.services.LinkServiceImpl;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,11 +47,8 @@ public class LinkController {
   }
 
   @PostMapping
-  public void create(
-      @RequestParam(value = "link") String link,
-      @RequestParam(value = "longLink") String longLink
-  ) {
-    linkService.create(link, longLink);
+  public void create(@Valid Link link) {
+    linkService.create(link);
   }
 
   @ResponseStatus(value = HttpStatus.NOT_FOUND)

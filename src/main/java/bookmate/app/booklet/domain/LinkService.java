@@ -9,5 +9,5 @@ public interface LinkService {
   String find(Device device, String shortLink);
   Link find(String shortLink);
   Page<Link> findAll(Pageable page);
-  Link create(String shortLink, String longLink);
+  Link create(Link link);
 }
