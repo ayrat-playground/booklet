@@ -6,7 +6,6 @@ import bookmate.app.booklet.repositories.LinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +18,17 @@ public class LinkServiceImpl implements LinkService {
   }
 
   @Override
-  public String find(Device device, String shortLink) {
-    return null;
+  public String find(String userAgent, String shortLink) {
+    Link link = find(shortLink);
+
+    if (link != null) {
+      PlatformDetectionServiceImpl platformService = new PlatformDetectionServiceImpl(userAgent);
+      String platform = platformService.detect();
+      return link.getLinkWithFallback(platform);
+    }
+    else {
+      return null;
+    }
   }
 
   @Override

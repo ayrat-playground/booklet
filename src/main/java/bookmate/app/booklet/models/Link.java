@@ -28,6 +28,11 @@ public class Link {
     this.wpLink = wpLink;
   }
 
+  public Link(String link, String webLink) {
+    this.link = link;
+    this.webLink = webLink;
+  }
+
   public String getLink() {
     return link;
   }
@@ -66,5 +71,20 @@ public class Link {
 
   public void setWpLink(String wpLink) {
     this.wpLink = wpLink;
+  }
+
+  public String getLinkWithFallback(String platform) {
+    String platformLink = getLinkByPlatform(platform);
+
+    return platformLink == null ? webLink : platformLink;
+  }
+
+  private String getLinkByPlatform(String platform) {
+    switch (platform) {
+      case("Android"): return androidLink;
+      case("iOS"): return iosLink;
+      case("WP"): return wpLink;
+      default: return webLink;
+    }
   }
 }
